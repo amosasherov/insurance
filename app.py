@@ -1,8 +1,9 @@
 from flask import Flask, request
 from flask_socketio import SocketIO
 from calculator_functions import calc_func as cf
+from mongo_db import users_db
 
-
+db = users_db()
 app = Flask(__name__)
 socketio = SocketIO(app)
 
@@ -10,7 +11,7 @@ app.debug = True
 
 
 @app.route('/life', methods=['POST'])
-def result():
+def life():
     data = request.get_json()
     sum = 0
     if data["kids"] is not None:
@@ -25,10 +26,14 @@ def result():
 
 
 @app.route('/health', methods=['POST'])
-
-@socketio.on('form')
-def get_form():
+def health():
     pass
 
-if __name__ == '__main__s'
+
+@socketio.on('form')
+def get_form(form):
+    db.push_form(form.user_id, {"$set" : form})
+
+
+if __name__ == '__main__':
 socketio.run(app)
