@@ -4,6 +4,9 @@ class calc_func:
     def __init__(self):
         pass
 
+
+    ### LIFE ###
+
     def offspring(self, kids, income):
         smallest = kids[0]["age"]
         for now in kids:
@@ -22,3 +25,8 @@ class calc_func:
         for person in dependants:
             results[person["id"]] = person["mcost"]*12*(est_end-person["age"])
         return results
+
+
+    ### HEALTH ###
+
+    

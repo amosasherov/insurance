@@ -22,7 +22,7 @@ def life():
         for dep in depends:
             sum += depends[dep]
     sum = sum * 0.75
-    return {"inc_to_buy" : sum}
+    return {"ins_to_buy" : sum}
 
 
 @app.route('/health', methods=['POST'])
@@ -36,4 +36,4 @@ def get_form(form):
 
 
 if __name__ == '__main__':
-socketio.run(app)
+    socketio.run(app)
